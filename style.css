@@ -1,0 +1,483 @@
+:root {
+    --blue: #1E3A8A;
+    --purple: #6B21A8;
+    --gold: #D4AF37;
+    --white: #ffffff;
+}
+
+/* ==========================================================================
+   Reset & Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Sticky footer layout */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   Header – Fixed: no breaking text, reduced padding, responsive
+   ========================================================================== */
+
+.site-header {
+    background: var(--purple);
+    color: var(--white);
+    padding: 0.8rem 1.2rem;          /* Reduced padding */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    margin: 0;
+    font-size: clamp(1.35rem, 3.8vw, 1.6rem); /* Smaller title */
+    font-weight: bold;
+    white-space: nowrap;                    /* Prevent breaking */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 45%;                         /* Limit width so it doesn't push nav */
+}
+
+/* Desktop nav */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;                           /* Slightly tighter gap */
+    flex-wrap: nowrap;
+}
+
+.main-nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 0.9rem;                /* Reduced padding on links */
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;                    /* Prevent word break on links */
+    font-size: 0.95rem;                     /* Slightly smaller text */
+}
+
+.main-nav a:hover {
+    color: var(--gold);
+    background: rgba(255,255,255,0.08);
+}
+
+/* Dropdowns */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-trigger {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.95rem;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    min-width: 220px;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+
+.dropdown.active .dropdown-menu {
+    display: block;
+}
+
+.dropdown-section h4 {
+    margin: 0.8rem 0 0.4rem;
+    color: var(--purple);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.dropdown-section a {
+    display: block;
+    padding: 0.5rem 0;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    white-space: nowrap;                    /* Prevent breaking inside dropdown */
+}
+
+.dropdown-section a:hover {
+    color: var(--purple);
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   Mobile Menu (768px and below)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--purple);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 90px 25px 40px;
+        transition: right 0.4s ease;
+        z-index: 9999;
+        box-shadow: -8px 0 25px rgba(0,0,0,0.25);
+        overflow-y: auto;
+    }
+
+    .main-nav.active {
+        right: 0;
+    }
+
+    .main-nav a,
+    .dropdown {
+        width: 100%;
+        margin: 0.8rem 0;
+    }
+
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        background: rgba(255,255,255,0.95);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        box-shadow: none;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    /* Hamburger → X animation */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+}
+
+/* ==========================================================================
+   Your original styles below (100% untouched)
+   ========================================================================== */
+
+.card {
+    background: var(--white);
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+    box-sizing: border-box;
+}
+.btn {
+    padding:10px 20px;
+    background: var(--purple);
+    color: var(--white);
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    text-decoration:none;
+    font-size: 14px;
+}
+.btn:hover { background: var(--blue); }
+.page-title {
+    font-size:24px;
+    font-weight:bold;
+    margin:20px 0;
+    color: var(--purple);
+}
+input, textarea {
+    width:100%;
+    padding:10px;
+    margin-bottom:12px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+}
+textarea { resize: vertical; }
+.grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap:15px;
+}
+.paper-item { display: flex; gap: 15px; align-items: flex-start; }
+.paper-thumbnail img { width: 80px; height: 100px; object-fit: cover; border-radius: 5px; }
+.featured-paper .paper-thumbnail img { width: 120px; height: 160px; }
+.paper-info { flex: 1; overflow: hidden; }
+.paper-info p { margin: 4px 0; word-wrap: break-word; }
+.marquee {
+    background: var(--purple);
+    color: var(--white);
+    padding: 10px 0;
+    text-align:center;
+    font-weight:bold;
+    font-size:16px;
+    margin-bottom:15px;
+}
+.hero {
+    padding:40px;
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    color: var(--white);
+    text-align:center;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+.hero h2 { font-size:34px; margin-bottom:8px; }
+.hero p { font-size:16px; max-width:900px; margin:auto; opacity:0.95; }
+.hero form { display:flex; gap:10px; max-width:720px; margin:20px auto 0; }
+.hero input[type="search"] {
+    flex:1;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08);
+    color:white;
+}
+/* ========== BEAUTIFUL LOGIN & REGISTER PAGES (same design) ========== */
+/* auth.css */
+
+:root {
+  --purple: #6B21A8;
+  --purple-dark: #5a1b8f;
+  --gradient-start: #667eea;
+  --gradient-end: #764ba2;
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+}
+
+.auth-box {
+  background: white;
+  padding: 45px 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.auth-box h2 {
+  font-size: 28px;
+  color: var(--purple);
+  margin: 0 0 8px 0;
+  font-weight: bold;
+}
+
+.auth-box > p {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.field {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.15);
+}
+
+.btn.full {
+  width: 100%;
+  padding: 14px;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 10px;
+  background: var(--purple);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.btn.full:hover {
+  background: var(--purple-dark);
+  transform: translateY(-1px);
+}
+
+.error-alert {
+  background: #ffe6e6;
+  color: #c92a2a;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.bottom-text {
+  margin-top: 28px;
+  color: #555;
+  font-size: 15px;
+}
+
+.bottom-text a {
+  color: var(--purple);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.bottom-text a:hover {
+  text-decoration: underline;
+}
+/* auth-mobile.css */
+
+/* ───────────────────────────────────────────────
+   Adjustments for small screens (≤ 480px)
+─────────────────────────────────────────────── */
+/* auth-mobile.css  —  add / replace these rules */
+
+/* Force vertical stacking + better spacing on mobile */
+@media (max-width: 480px) {
+
+  .auth-container {
+    padding:          1.5rem 1rem;
+    min-height:       100dvh;
+    gap:              2.5rem;           /* ← key: space between form and email box */
+    justify-content:  flex-start;       /* start from top instead of perfect center */
+    padding-top:      2rem;             /* breathing room from top */
+  }
+
+  .auth-box,
+  .email-box {                          /* assuming you renamed it to .email-box */
+    width:            100%;
+    max-width:        none;             /* let it take full available width */
+    margin:           0;                /* remove any unwanted auto margins */
+    box-shadow:       0 4px 16px rgba(0,0,0,0.08);  /* softer shadow on mobile */
+  }
+
+  /* Make sure both children are treated as block/flow items */
+  .auth-box,
+  .email-box {
+    display:          block;
+    flex:             none;             /* prevent flex shrinking/growing weirdly */
+  }
+
+  /* Optional: make email box visually lighter on small screens */
+  .email-box {
+    background:       rgba(255,255,255,0.92);
+    border:           1px solid rgba(230,230,250,0.8);
+    padding:          1.6rem 1.3rem;
+  }
+
+  /* Slightly smaller text/buttons if screen is very narrow */
+  @media (max-width: 360px) {
+    .auth-container {
+      gap: 2rem;
+      padding-top: 1.5rem;
+    }
+    
+    .email-box {
+      padding: 1.4rem 1.1rem;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .auth-container {
+    flex-direction:   column;
+    align-items:      stretch;      /* children take full width */
+    justify-content:  flex-start;
+    gap:              2.5rem;
+    padding:          2rem 1.2rem;
+  }
+
+  .auth-box,
+  .email-box {
+    margin:           0;
+  }
+}
